@@ -1,3 +1,21 @@
 # installing packages using command line:
 py -3.6 -m pip install "packagesname"
 
+# -------- using filter function to screen from dictionary of stopwords word from vector which contains sentences ----------
+list(filter(lambda x: x not in dictionary, array)))
+
+# dictionary - list of words to be screened out of the sentence
+# array - contains the entire sentence
+# this function returns a list of the sentnce excludes the dictionary words.
+
+# ------- function for creation of bigram - trigrams -----------
+# input_list - vector where each value contains a vector of 
+from nltk import ngrams
+
+def ngrams(input_list):
+    #onegrams = input_list
+    bigrams = [' '.join(t) for t in list(zip(input_list, input_list[1:]))]
+    trigrams = [' '.join(t) for t in list(zip(input_list, input_list[1:], input_list[2:]))]
+    return bigrams+trigrams
+tweets['grams'] = tweets.normalized_tweet.apply(ngrams)
+tweets[['grams']].head()
